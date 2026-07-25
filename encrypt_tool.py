@@ -37,7 +37,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 
 # 密码文件（同目录下，避免密码硬编码在脚本中）
-PASSWORD_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "my_encrypt_key.txt")
+PASSWORD_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "agent_encrypt_key.txt")
 
 # 同目录下的 token 文件
 TOKEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "encrypt_token.txt")
