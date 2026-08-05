@@ -36,24 +36,11 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 
-# 密码文件（同目录下，避免密码硬编码在脚本中）
-PASSWORD_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "agent_encrypt_key.txt")
+# 内置密码（主人指定的统一密码）
+DEFAULT_PASSWORD = "******"
 
 # 同目录下的 token 文件
 TOKEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "encrypt_token.txt")
-
-
-def _load_password() -> str:
-    """从密码文件读取默认密码"""
-    if not os.path.exists(PASSWORD_FILE):
-        print(f"错误: 找不到密码文件 {PASSWORD_FILE}", file=sys.stderr)
-        sys.exit(1)
-    with open(PASSWORD_FILE, "r", encoding="utf-8") as f:
-        return f.read().strip()
-
-
-# 默认密码（启动时从外部文件加载）
-DEFAULT_PASSWORD = _load_password()
 
 
 def derive_key(password: str, salt: bytes) -> bytes:
